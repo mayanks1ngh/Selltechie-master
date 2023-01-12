@@ -1,0 +1,547 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<!-- HOME SLIDER -->
+<!--suppress ALL -->
+<div class="slider-wrap">
+	<div id="mainSlider" class="nivoSlider slider-image">
+		<img src="{% static 'img/koh8.jpg' %}" alt="main slider" title="#htmlcaption1"/>
+		<img src="{% static 'img/koh7.jpg' %}" alt="main slider" title="#htmlcaption2"/>
+	</div>
+	<div id="htmlcaption1" class="nivo-html-caption">
+		<div class="slider-progress"></div>					
+		<div class="slide-text-right text-black slide-text">
+			<div class="middle-text text-center">
+				<div class="middle-text text-center">
+				<h3 class="cap-sub-title wow fadeInUp" data-wow-duration=".9s" data-wow-delay="0.8s">Buy Tech Gadgets</h3>
+				<h1 class="cap-title wow lightSpeedIn" data-wow-duration=".9s" data-wow-delay="1.5s">Tech Gadgets</h1>
+				<h2 class="cap-dec wow rollIn" data-wow-duration="0.9s" data-wow-delay="2.2s">Best in Class</h2>
+				<a href="index.html#" class="cap-readmore wow fadeInUp" data-wow-duration="0.9s" data-wow-delay="3s">Buy Now</a>
+			</div>										
+		</div>
+	</div>
+	<div id="htmlcaption2" class="nivo-html-caption">
+		<div class="slider-progress"></div>							
+		<div class="slide-text-right text-black slide-text">
+			<div class="middle-text text-center">
+				<h3 class="cap-sub-title wow fadeInUp" data-wow-duration=".9s" data-wow-delay="0.8s">Sell Tech Gadgets</h3>
+				<h1 class="cap-title wow lightSpeedIn" data-wow-duration=".9s" data-wow-delay="1.5s">Tech Gadgets</h1>
+				<h2 class="cap-dec wow rollIn" data-wow-duration="0.9s" data-wow-delay="2.2s">Best in Class</h2>
+				<a href="index.html#" class="cap-readmore wow fadeInUp" data-wow-duration="0.9s" data-wow-delay="3s">Sell Now</a>
+			</div>	
+		</div>						
+	</div>
+</div>
+<!-- HOME SLIDER -->
+<!-- Top Banner Start -->
+<div class="top-banner margin-top-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="top-banner-wrap">
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/n.png' %}" alt="" />
+						<a href="mobiles"><h2>mobiles</h2></a>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/o.png' %}" alt="" />
+						<a href="laptop"><h2>laptops</h2></a>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/kp.png' %}" alt="" />
+						<a href="index.html#"><h2>tablets</h2></a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Top Banner End -->
+<!-- Popular Product Area Start -->
+<div class="propular-product margin-top-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Popular Product</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="propular-slider owl-carousel">
+					<!-- Single Tab Product -->
+					{% for i in last_five %}
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a href="" class="pro-image">
+								<img class="primary" src="{{ i.img1.url }}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="index.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="index.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">{{ i.name }}</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">&#8377; {{ i.price }}</span></div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Propular Product Area End -->
+<!-- Tab Product Area Start -->
+<div class="tab-products fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- Product Tan List -->
+				<ul class="pro-tab-list fix">
+					{% for i in subcat %}
+					{% if forloop.counter == 1 %}
+					<li class="active"><a href="#{{ forloop.counter }}" data-toggle="tab">{{ i.name }}</a></li>
+				     {% else %}
+					<li class=""><a href="#{{ forloop.counter }}" data-toggle="tab">{{ i.name }}</a></li>
+                     {% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+			<!-- Tab Product Content Container Start -->
+			<div class="tab-content tab-products-container">
+				<!-- New Arrivals Tab -->
+				{% for i in subcat %}
+				{% if forloop.counter == 1 %}
+				<div class="tab-pane active" id="{{ forloop.counter }}">
+					{% else %}
+					<div class="tab-pane " id="{{ forloop.counter }}">
+					{% endif %}
+					<!-- Single Tab Product -->
+					{% for p in i.product_set.all %}
+
+					<div class="col-sm-4 col-md-3 col-xs-12">
+						<div class="single-product">
+							<div class="pro-image-hover">
+								<a href="index.html#" class="pro-image">
+									<img class="primary" src="{{ p.img1.url }}" alt="" />
+								</a>
+								<div class="action-buttons">
+									<a class="act-btn quick-view" href="index.html#"><i class="fa fa-search"></i></a>
+									<a class="act-btn favorite" href="index.html#"><i class="fa fa-heart-o"></i></a>
+									<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+								</div>
+							</div>
+							<div class="pro-bref fix">
+								<a class="pro-name" href="product-details.html">{{ p.name }}</a>
+								<div class="pro-ratting float-left">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+								<div class="pro-price float-right"><span class="new">&#8377; {{ p.price }}</span></div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+				{% endfor %}
+				<!-- Feature Tab -->
+
+
+			</div><!-- Tab Product Content Container End -->
+		</div>
+	</div>
+</div><!-- Tab Product Area End -->
+<!-- Collection Banner Start -->
+<div class="collection-banner fix">
+	<div class="overlay padding-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>TECH GADGETS</h1>
+					<h1><a href="index.html#">MOBILE</a> - <a href="index.html#">LAPTOP</a> - <a href="index.html#">TABLET</a></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Collection Banner End -->
+<!-- Banner Start <-->
+<div class="banner-area margin-top-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/tech.png' %}"></a>
+				</div>
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/tech1.jpg' %}"></a>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/oneplus.png' %}"></a>
+				</div>	
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/nokia.png' %}"></a>
+				</div>					
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/mi.png' %}"></a>
+				</div>
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/samsung.png' %}"></a>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Feature Product Area Start -->
+<div class="feature-product margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Feature Product</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="feature-slider owl-carousel">
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/11pro.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Iphone 11 max pro</a>
+								<div class="pro-price"><span class="new">Rs110000</span><span class="old">Rs 127000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/legion.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Lenovo Legion</a>
+								<div class="pro-price"><span class="new">Rs50000</span><span class="old">Rs75000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/dell.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Dell Inspiron 3356</a>
+								<div class="pro-price"><span class="new">Rs45000</span><span class="old">Rs55000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/6t.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">OnePlus 6t</a>
+								<div class="pro-price"><span class="new">Rs32000</span><span class="old">Rs40000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/predator.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Acer Predator</a>
+								<div class="pro-price"><span class="new">Rs50000</span><span class="old">Rs75000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/ps4.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">PS4</a>
+								<div class="pro-price"><span class="new">Rs45000</span><span class="old">Rs30000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/note8.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Mi Note 8 Pro</a>
+								<div class="pro-price"><span class="new">Rs16000</span><span class="old">Rs14000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/note10.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Samsung Note 10</a>
+								<div class="pro-price"><span class="new">Rs80000</span><span class="old">R70000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/ipad.jpeg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Apple Ipad</a>
+								<div class="pro-price"><span class="new">Rs100000</span><span class="old">Rs80000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/headphone.jpeg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Headphones</a>
+								<div class="pro-price"><span class="new">Rs5000</span><span class="old">Rs4500</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/1.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Samsung Tab</a>
+								<div class="pro-price"><span class="new">Rs50000</span><span class="old">Rs30000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/xr.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">iphone XR</a>
+								<div class="pro-price"><span class="new">Rs80000</span><span class="old">Rs50000</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Propular Product Area End -->	
+<!-- Testimonial Start -->	
+<div class="testimonial padding-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-xs-12">
+				<!-- Testimonial Slider -->		
+				<div class="testimonial-slider owl-carousel text-center">
+					<!-- Single Testimonial -->
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Testimonial End -->	
+<!-- Blog Area Start -->	
+<div class="blog-area margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<!-- Blog Area Title -->	
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Form Blog</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<!-- Blog Slider -->	
+				<div class="blog-slider owl-carousel">
+					<!-- Single Blog -->
+
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/pro.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Apple Introduces the All New 16-Inch MacBook Pro</a></h2>
+							<p>The world’s greatest pro notebook is now that much greater, thanks to a stunning new release. Just unveiled by Apple, the 16-inch MacBook Pro comes packed to the gills with choice specs, including the brand’s largest Retina display to date. That’s joined by the latest 8-core processors, up to 64GB of memory, next-level graphics, and an all-new thermal design. Put it all together and throw in loads of extra goodies and you’re looking at one supremely powerful and high-performing MacBook Pro</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="https://manofmany.com/tech/apple/apple-introduces-the-all-new-16-inch-macbook-pro" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">15 Nov 2019</span>
+						</div>
+					</div>
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/oo.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">DevOps for Salesforce Lightning</a></h2>
+							<p>The tools you work with have a lot of impact on what you can accomplish, and the more sophisticated the tools the better -- especially in software. My company, Beagle Research, just completed a study into the use of a DevOps strategy with the Salesforce Lightning Platform, sponsored by DevOps solutions provider Copado.</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="https://www.technewsworld.com/story/86338.html" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">15 Nov 2019</span>
+						</div>
+					</div>
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/iphone12.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">First Look at Renders of the New iPhone 12</a></h2>
+							<p>Apple launches a new iPhone every year. You would think after so many announcements, product launches and years spent buying the tech we’d grow tired of it all. But if these new renders are anything to go by, the iPhone 12 looks set to continue the success and take out the smartphone popularity contest again in 2020.</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="https://manofmany.com/tech/apple/first-look-at-renders-of-the-iphone-12" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">15 Nov 2019</span>
+						</div>
+					</div>
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/pixel1.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Google Reveals New Sweatproof Pixel Buds</a></h2>
+							<p>Google unveiled the newest version of their Pixel Buds at their October hardware event and it looks like they addressed the complaints of the first generation buds from 2017 while adding in some nice new features</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="https://manofmany.com/tech/google-reveals-new-sweatproof-pixel-buds" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">15 Nov 2019</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Blog Area End -->
+{% endblock %}

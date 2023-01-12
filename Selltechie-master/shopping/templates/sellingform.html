@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+{%load static%}
+<form action="" method="POST">
+	{% csrf_token %}
+	<div class="container">
+		<h1>Tell Us Few Things About Your Phone</h1>
+		<label>1.Are You Able to make or recieve calls</label><br><br>
+		<input type="radio" name="yes" value="yes">Yes<input type="radio" name="yes" value="no">No<br>
+<br><br><br>
+		<label>1.Are there any problem with your mobile screen</label><br><br>
+		<input type="radio" name="no" value="yes">Yes <input type="radio" name="no" value="no">No<br>
+<br><br><br>
+		<label>1.Are there any problem with mobile body</label><br><br>
+		<input type="radio" name="k" value="yes">Yes <input type="radio" name="k" value="no">No<br><br>
+		<input type="submit" value="submit" >
+		<a href="/sell">Proceed</a>
+	</div>
+</form>
+{% endblock %}

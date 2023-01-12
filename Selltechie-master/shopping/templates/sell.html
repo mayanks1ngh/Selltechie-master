@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+{%load static%}
+	
+	<div class="container">
+		<h1>Choose Your Varient</h1>
+		<div class="row">
+			<div class="col-md-4">
+				<img src='\media\shop\images\xx.jpg'>
+			</div>
+			<div class="col-md-4 " style="padding: 10px">
+				<h4>chhose a varient</h4>
+					<div1 style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<a href="apple.html"><input type="radio" name="radio"><label>16 GB</label></a><nbsp>
+				</div1><br><br>
+				<div style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<a href=""><input type="radio" name="radio"><label>32 GB</label></a><nbsp>
+				</><br><br>
+				<div1 style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<a href=""><input type="radio" name="radio"><label>64 GB</label></a>
+				</div1>
+			</div>
+			<div class="col-md-4">
+				<h3>specifications</h3><br>
+				<label>1GB RAM</label><br>
+				<label>APPLE A6 CHIPSET</label><br>
+				<label>8 MP BACK CAMERA</label>
+			</div>
+			<a href="/finalprice"><button>Sell Now</button></a>
+		</div>
+	</div>
+{% endblock %}

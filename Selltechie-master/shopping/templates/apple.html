@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body %}
+{%load static%}
+
+	<div class="container">
+		<h1>Choose Your Product</h1>
+		<div class="row">
+			<div class="col-md-4" style="min-height: 550px">
+				<div class="thumbnail">
+					<a href="/varients"><img src='/media/{{Apple.0.image}}'></a>
+					<div class="caption">
+						<h1>{{Apple.0.mobile_model}}</h1>
+					</div>
+				</div>
+		</div>
+		<div class="col-md-4 " style="min-height: 550px" >
+				<div class="thumbnail">
+					<a href=""><img src='/media/{{Apple.1.image}}'></a>
+					<div class="caption">
+						<h1>{{Apple.1.mobile_model}}</h1>
+					</div>
+				</div>
+		</div>
+		<div class="col-md-4"  style="min-height: 550px">
+				<div class="thumbnail">
+					<a href=""><img src='/media/{{Apple.2.image}}'></a>
+					<div class="caption">
+						<h1>{{Apple.2.mobile_model}}</h1>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+{% endblock%}

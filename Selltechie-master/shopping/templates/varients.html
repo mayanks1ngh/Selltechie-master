@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+{%load static%}
+	
+	<div class="container">
+		<h1>Choose Your Varient</h1>
+		<div class="row">
+			<div class="col-md-4">
+
+				<img src='\media\shop\images\xx.jpg'>
+			</div>
+			<form action="" method="POST">
+				{% csrf_token %}
+			<div class="col-md-4 " style="padding: 10px">
+				<h4>choose a varient</h4>
+					<div1 style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<input type="radio" name="rad" value="16" ><label>16 GB</label><nbsp>
+				</div1><br><br>
+				<div1 style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<input type="radio" name="rad" value="32"><label>32 GB</label><nbsp>
+				</div1><br><br>
+				<div1 style="border: 1px solid red; border-radius: 25px; border-right: 200px;padding: 10px">
+					<input type="radio" name="rad" value="64"><label>64 GB</label>
+				</div1>
+			</div>
+			<div class="col-md-4">
+				<h3>specifications</h3><br>
+				<label>1GB RAM</label><br>
+				<label>APPLE A6 CHIPSET</label><br>
+				<label>8 MP BACK CAMERA</label>
+			</div>
+		</div>
+		<input type="submit" value="Submit">
+		<a href="/sellingform">continue</a>
+	</div>
+
+{% endblock%}
